@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>resource/main.qml</file>
+        <file>resource/Tile.qml</file>
+        <file>resource/Header.qml</file>
     </qresource>
 </RCC>
