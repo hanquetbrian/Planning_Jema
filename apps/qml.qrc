@@ -3,5 +3,9 @@
         <file>resource/main.qml</file>
         <file>resource/Tile.qml</file>
         <file>resource/Header.qml</file>
+        <file>resource/img/logo_transparent.png</file>
+        <file>resource/img/logo_transparent_small.png</file>
+        <file>resource/CalendarView.qml</file>
+        <file>resource/DatePicker.qml</file>
     </qresource>
 </RCC>
