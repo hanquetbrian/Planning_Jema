@@ -7,6 +7,14 @@ ListView {
     property date firstDay: new Date()
     property int nbDay: 31
 
+    function getDays() {
+        let days = [];
+        for(let i=1; i<=31; i++) {
+            days.push(i);
+        }
+        return days;
+    }
+
 
     model: CalendarModel{}
     delegate: calendarDelegate
@@ -43,26 +51,28 @@ ListView {
 
             ColumnLayout {
                 Rectangle {
-                    id: rectMonthHeader
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     color: "#f7f7f7"
 
                     Label {
-                        anchors.verticalCenter: rectMonthHeader.verticalCenter
-                        anchors.horizontalCenter: rectMonthHeader.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
                         text: "Mars"
                     }
                 }
                 RowLayout {
                     spacing: 0
                     Repeater {
-                        model: calendarView.nbDay
-                        Tile {
+                        model: getDays()
+                        Rectangle {
+                            border.color: "lightgrey"
                             Layout.fillHeight: true
                             Layout.fillWidth: true
                             Label {
-                                text: "day"
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                text: modelData
                             }
                         }
                     }
