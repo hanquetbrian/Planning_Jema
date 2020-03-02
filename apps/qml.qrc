@@ -7,5 +7,8 @@
         <file>resource/img/logo_transparent_small.png</file>
         <file>resource/CalendarView.qml</file>
         <file>resource/DatePicker.qml</file>
+        <file>resource/icon/tools.svg</file>
+        <file>resource/PButton.qml</file>
+        <file>resource/icon/user.svg</file>
     </qresource>
 </RCC>

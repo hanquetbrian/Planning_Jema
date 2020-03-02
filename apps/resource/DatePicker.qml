@@ -9,8 +9,8 @@ RowLayout {
         id: textDatePicker
 
         placeholderText: qsTr("Entrer un jour")
-        font.bold: true
         font.pointSize: 10
+        Layout.maximumWidth: 100
 
         MouseArea {
             anchors.fill: parent
@@ -20,7 +20,7 @@ RowLayout {
 
     Dialog {
         id: calendarDialog
-        background: {}
+        background: Item{}
         topMargin: 50
 
         Calendar {

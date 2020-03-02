@@ -4,12 +4,13 @@ import QtQuick.Layouts 1.14
 
 Rectangle {
     color: '#66b2e8'
-//    clip: true
     height: brandImg.height*1.3
 
     RowLayout {
+        id: mainLayout
         anchors.fill: parent
         anchors.margins: parent.height * 0.1
+        spacing: 20
 
         Image {
             id: brandImg
@@ -19,19 +20,27 @@ Rectangle {
             text: "Planning Jema"
             color: "white"
             font.pixelSize: 25
-            anchors.left: brandImg.right
-            anchors.leftMargin: 20
         }
         ComboBox {
+            Layout.leftMargin: mainLayout.width * 0.05
             model: ['Jour', 'Semaine', 'Mois', 'Année']
             currentIndex: 2
         }
 
+        DatePicker {}
 
-
-        DatePicker {
-
+        Item {
+            Layout.fillWidth: true
         }
+
+        PButton {
+            iconSrc: "qrc:/resource/icon/tools.svg"
+        }
+
+        PButton {
+            iconSrc: "qrc:/resource/icon/user.svg"
+        }
+
     }
 
 }
