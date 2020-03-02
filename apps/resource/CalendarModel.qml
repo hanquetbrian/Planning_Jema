@@ -1,9 +1,9 @@
 import QtQuick 2.0
 
 ListModel {
+
     ListElement {
         name: "Leona Everett"
-        fonction: ""
     }
 
     ListElement {
@@ -25,5 +25,4 @@ ListModel {
     ListElement {
         name: "Zack John"
     }
-
 }

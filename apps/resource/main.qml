@@ -14,12 +14,12 @@ ApplicationWindow  {
 
     header: Header{
         id: header
-
-//        anchors.fill: parent
     }
 
     StackView {
-        initialItem: CalendarView{}
+        initialItem: CalendarView{
+//            firstDay:
+        }
         anchors.fill: parent
 
     }

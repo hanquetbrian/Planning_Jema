@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.14
 import QtQuick.Controls 2.14
 
 ListView {
-    id: flickable
+    id: calendarView
     property date firstDay: new Date()
     property int nbDay: 31
 
@@ -43,7 +43,29 @@ ListView {
 
             ColumnLayout {
                 Rectangle {
+                    id: rectMonthHeader
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "#f7f7f7"
 
+                    Label {
+                        anchors.verticalCenter: rectMonthHeader.verticalCenter
+                        anchors.horizontalCenter: rectMonthHeader.horizontalCenter
+                        text: "Mars"
+                    }
+                }
+                RowLayout {
+                    spacing: 0
+                    Repeater {
+                        model: calendarView.nbDay
+                        Tile {
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            Label {
+                                text: "day"
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -78,7 +100,7 @@ ListView {
                 }
             }
             Repeater {
-                model: flickable.nbDay
+                model: calendarView.nbDay
                 Tile {
 
                     Layout.fillHeight: true
