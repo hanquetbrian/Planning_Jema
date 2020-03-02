@@ -10,7 +10,7 @@ Button {
     icon.source: iconSrc
     icon.color: "White"
     background: Rectangle {
-        color: button.down ? "#537b99": "#5b93bd"
+        color: button.down ? "#7caacc": "#7db4db"
         implicitWidth: 45
         implicitHeight: 45
         radius: 5

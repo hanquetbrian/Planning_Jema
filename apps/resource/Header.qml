@@ -3,8 +3,12 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 
 Rectangle {
-    color: '#66b2e8'
     height: brandImg.height*1.3
+    gradient: Gradient {
+        orientation: Gradient.Horizontal
+        GradientStop {position: 0.0; color: "#5eade6"}
+        GradientStop {position: 1.0; color: "#93ccf5"}
+    }
 
     RowLayout {
         id: mainLayout
@@ -39,6 +43,10 @@ Rectangle {
 
         PButton {
             iconSrc: "qrc:/resource/icon/user.svg"
+        }
+
+        PButton {
+            iconSrc: "qrc:/resource/icon/question.svg"
         }
 
     }

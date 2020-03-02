@@ -2,10 +2,18 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="planning_software_fr_FR">
 <context>
+    <name>DatePicker</name>
+    <message>
+        <location filename="../apps/resource/DatePicker.qml" line="11"/>
+        <source>Entrer un jour</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main</name>
     <message>
-        <location filename="../apps/resource/main.qml" line="12"/>
-        <source>Hello World</source>
+        <location filename="../apps/resource/main.qml" line="9"/>
+        <source>Planning Jema</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

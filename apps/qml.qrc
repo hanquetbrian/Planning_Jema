@@ -10,5 +10,7 @@
         <file>resource/icon/tools.svg</file>
         <file>resource/PButton.qml</file>
         <file>resource/icon/user.svg</file>
+        <file>resource/icon/question.svg</file>
+        <file>resource/CalendarModel.qml</file>
     </qresource>
 </RCC>

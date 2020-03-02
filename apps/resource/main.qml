@@ -6,7 +6,7 @@ import QtQuick.Controls 2.14
 
 ApplicationWindow  {
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Planning Jema")
     width: screen.width * 0.8
     height: screen.height * 0.8
 
