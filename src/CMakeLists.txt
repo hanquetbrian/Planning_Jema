@@ -1,8 +1,9 @@
 
 # Header
-set(HEADER_LIST "../include/planning.hpp")
+set(HEADER_LIST ../include/planning.hpp ../include/employee.h)
+set(SOURCE_LIST planning.cpp employee.cpp)
 
-add_library(planning_lib STATIC planning.cpp ${HEADER_LIST})
+add_library(planning_lib STATIC ${SOURCE_LIST} ${HEADER_LIST})
 
 target_include_directories(planning_lib PUBLIC ../include)
 

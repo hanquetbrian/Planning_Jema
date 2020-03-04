@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls 2.14
+import PlanningModel 1.0
 
 ListView {
     id: calendarView
@@ -16,7 +17,8 @@ ListView {
     }
 
 
-    model: CalendarModel{}
+//    model: CalendarModel{}
+    model: PlanningModel{}
     delegate: calendarDelegate
     ScrollBar.vertical: ScrollBar {
         id: myscrollBar
@@ -99,7 +101,7 @@ ListView {
 
 
                 Label {
-                    text: model.name
+                    text: model.employeeName
                     color: "#424547"
                     font.pixelSize: 18
                     font.bold: true
