@@ -1,32 +1,40 @@
 #ifndef PLANNINGMODEL_H
 #define PLANNINGMODEL_H
-
-#include <QAbstractListModel>
+#include <QObject>
+#include <QDate>
 #include "employee.h"
 
-class PlanningModel : public QAbstractListModel
+class PlanningModel: public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(QString firstDate READ firstDate WRITE setFirstDate NOTIFY calendarUpdated)
+
 public:
-    enum PlanningRoles {
-        employeeName
+    enum interval {
+        day,
+        week,
+        month,
+        year
     };
 
-    explicit PlanningModel(QObject *parent = nullptr);
+    PlanningModel();
 
-    // Basic functionality:
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QString firstDate() const;
+    void setFirstDate(QString date, QString format = "dd/MM/yyyy");
 
-    void addEmployee(const Employee &employee);
+signals:
+    void newEmployee();
+    void calendarUpdated();
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-protected:
-    QHash<int, QByteArray> roleNames() const override;
+public slots:
+    void updateCalendar();
 
 private:
     QList<Employee> m_employees;
+    interval m_interval;
+    QDate m_firstDate;
+
 };
 
 #endif // PLANNINGMODEL_H

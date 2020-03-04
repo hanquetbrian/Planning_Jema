@@ -1,8 +1,12 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
+import PlanningModel 1.0
 
 Rectangle {
+    id: header
+
+    property PlanningModel pModel
     height: brandImg.height*1.3
     gradient: Gradient {
         orientation: Gradient.Horizontal
@@ -31,7 +35,10 @@ Rectangle {
             currentIndex: 2
         }
 
-        DatePicker {}
+
+        DatePicker {
+            pModel: header.pModel
+        }
 
         Item {
             Layout.fillWidth: true
