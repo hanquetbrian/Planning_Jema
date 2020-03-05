@@ -4,9 +4,21 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 COMPONENTS Core Quick QuickControls2 LinguistTools REQUIRED)
 
-set(TS_FILES ../translate/planning_software_fr_FR.ts)
-set(SOURCES main.cpp calendarmodel.cpp planningmodel.cpp qml.qrc)
-set(HEADERS include/calendarmodel.h include/planningmodel.h)
+set(TS_FILES
+    ../translate/planning_software_fr_FR.ts
+)
+
+set(SOURCES
+    main.cpp
+    calendarmodel.cpp
+    planningmodel.cpp
+    qml.qrc
+)
+
+set(HEADERS
+    include/calendarmodel.h
+    include/planningmodel.h
+)
 
 
 add_executable(app

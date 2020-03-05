@@ -1,7 +1,16 @@
 
 # Header
-set(HEADER_LIST ../include/planning.hpp ../include/employee.h ../include/sqliteemployee.h)
-set(SOURCE_LIST planning.cpp employee.cpp sqliteemployee.cpp)
+set(HEADER_LIST
+    ../include/planning.hpp
+    ../include/employee.h
+    ../include/sqliteemployee.h
+)
+
+set(SOURCE_LIST
+    planning.cpp
+    employee.cpp
+    sqliteemployee.cpp
+)
 
 add_library(planning_lib STATIC ${SOURCE_LIST} ${HEADER_LIST})
 
