@@ -3,16 +3,20 @@
 #include <QObject>
 #include <QDate>
 #include "employee.h"
+#include "calendarmodel.h"
 
 class PlanningModel: public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString firstDate READ firstDate WRITE setFirstDate NOTIFY calendarUpdated)
+    Q_PROPERTY(QString firstDateISOFormat READ firstDateISOFormat NOTIFY calendarUpdated)
+    Q_PROPERTY(int interval READ interval WRITE setInterval NOTIFY calendarUpdated)
+    Q_PROPERTY(CalendarModel* calendarModel READ calendarModel NOTIFY calendarUpdated)
 
 public:
-    enum interval {
-        day,
+    enum Interval {
+        day = 0,
         week,
         month,
         year
@@ -20,21 +24,26 @@ public:
 
     PlanningModel();
 
-    QString firstDate() const;
+    QString firstDateISOFormat() const;
+    QString firstDate(QString format = "dd/MM/yyyy") const;
     void setFirstDate(QString date, QString format = "dd/MM/yyyy");
 
+    int interval() const;
+    void setInterval(int interval);
+
+    CalendarModel* calendarModel();
 signals:
     void newEmployee();
     void calendarUpdated();
 
 public slots:
-    void updateCalendar();
+    QString getDateFormat(QString format = "dd/MM/yyyy") const;
+
 
 private:
-    QList<Employee> m_employees;
-    interval m_interval;
+    CalendarModel* m_calendarModel;
+    Interval m_interval;
     QDate m_firstDate;
-
 };
 
 #endif // PLANNINGMODEL_H

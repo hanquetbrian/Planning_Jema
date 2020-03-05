@@ -2,13 +2,6 @@
 
 CalendarModel::CalendarModel(QObject *parent)
     : QAbstractListModel(parent) {
-    m_employees << Employee("Leona Everett");
-    m_employees << Employee("Reuben Hart");
-    m_employees << Employee("Kristina Byrd");
-    m_employees << Employee("Erica Harmon");
-    m_employees << Employee("Martin Randolph");
-    m_employees << Employee("Zack John");
-
 }
 
 int CalendarModel::rowCount(const QModelIndex &parent) const
@@ -38,11 +31,23 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool CalendarModel::setData(const QModelIndex &index, const QVariant &value, int role) {
+bool CalendarModel::setData(const QModelIndex &index, const QVariant& /*value*/, int role) {
     if (!index.isValid())
         return false;
+    if(role == employeeName) {
 
+    }
     return false;
+}
+
+QVariant CalendarModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    if(section < 0 | orientation != Qt::Horizontal) {
+        return QVariant();
+    }
+    if(role == employeeName) {
+        return QString("head");
+    }
+    return QVariant();
 }
 
 Qt::ItemFlags CalendarModel::flags(const QModelIndex &index) const {

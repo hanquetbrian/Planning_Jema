@@ -2,29 +2,62 @@
 
 PlanningModel::PlanningModel()
 {
-    m_employees << Employee("Leona Everett");
-    m_employees << Employee("Reuben Hart");
-    m_employees << Employee("Kristina Byrd");
-    m_employees << Employee("Erica Harmon");
-    m_employees << Employee("Martin Randolph");
-    m_employees << Employee("Zack John");
+    m_calendarModel = new CalendarModel();
+    m_calendarModel->addEmployee(Employee("Leona Everett"));
+    m_calendarModel->addEmployee(Employee("Reuben Hart"));
+    m_calendarModel->addEmployee(Employee("Kristina Byrd"));
+    m_calendarModel->addEmployee(Employee("Erica Harmon"));
+    m_calendarModel->addEmployee(Employee("Martin Randolph"));
+    m_calendarModel->addEmployee(Employee("Zack John"));
 
     m_firstDate = QDate::currentDate();
     m_interval = month;
 
 }
+QString PlanningModel::firstDateISOFormat() const {
+    return m_firstDate.toString("yyyy-MM-dd");
+}
 
-QString PlanningModel::firstDate() const {
-    return m_firstDate.toString("dd/MM/yyyy");
+QString PlanningModel::firstDate(QString format) const {
+    return m_firstDate.toString(format);
 }
 void PlanningModel::setFirstDate(QString date, QString format) {
     m_firstDate = QDate::fromString(date, format);
-}
-
-/* SIGNAL */
-void PlanningModel::updateCalendar() {
     calendarUpdated();
 }
+
+
+int PlanningModel::interval() const {
+    return m_interval;
+}
+void PlanningModel::setInterval(int interval) {
+    switch (interval) {
+    case 0:
+        m_interval = PlanningModel::Interval::day;
+        break;
+    case 1:
+        m_interval = PlanningModel::Interval::week;
+        break;
+    case 2:
+        m_interval = PlanningModel::Interval::month;
+        break;
+    case 3:
+        m_interval = PlanningModel::Interval::year;
+        break;
+    }
+
+    calendarUpdated();
+}
+
+CalendarModel* PlanningModel::calendarModel() {
+    return m_calendarModel;
+}
+
+/* SLOTS */
+QString PlanningModel::getDateFormat(QString format) const {
+    return firstDate(format);
+}
+
 /*
 QList<Employee> m_employees;
 interval m_interval;

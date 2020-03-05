@@ -22,8 +22,8 @@ ApplicationWindow {
 
     StackView {
         initialItem: CalendarView{
-
-            model: CalendarModel{}
+            pModel: mainWindow.pModel
+            model: mainWindow.pModel.calendarModel
         }
         anchors.fill: parent
 

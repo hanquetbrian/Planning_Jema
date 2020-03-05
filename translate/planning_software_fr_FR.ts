@@ -4,7 +4,7 @@
 <context>
     <name>DatePicker</name>
     <message>
-        <location filename="../apps/resource/DatePicker.qml" line="11"/>
+        <location filename="../apps/resource/DatePicker.qml" line="12"/>
         <source>Entrer un jour</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,7 +12,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../apps/resource/main.qml" line="9"/>
+        <location filename="../apps/resource/main.qml" line="11"/>
         <source>Planning Jema</source>
         <translation type="unfinished"></translation>
     </message>

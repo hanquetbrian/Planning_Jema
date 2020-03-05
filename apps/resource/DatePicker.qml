@@ -32,8 +32,6 @@ ColumnLayout {
             clip: false
             onClicked: {
                 pModel.firstDate = Qt.formatDate(calendarView.selectedDate, "dd/MM/yyyy");
-                //textDatePicker.text = pModel.firstDate
-                pModel.updateCalendar();
                 calendarDialog.close()
             }
         }

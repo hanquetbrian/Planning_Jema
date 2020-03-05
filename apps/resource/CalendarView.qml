@@ -1,16 +1,20 @@
 import QtQuick 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls 2.14
+import PlanningModel 1.0
 
 ListView {
     id: calendarView
-    property date firstDay: new Date()
-    property int nbDay: 31
+    property PlanningModel pModel
+
 
     function getDays() {
+        let selectedDate = new Date(pModel.firstDateISOFormat)
         let days = [];
-        for(let i=1; i<=31; i++) {
-            days.push(i);
+        let newDate = new Date(selectedDate.getTime());
+        for(let i=0; i<31; i++) {
+            days.push(newDate.getDate());
+            newDate.setDate(newDate.getDate()+1)
         }
         return days;
     }
@@ -108,7 +112,7 @@ ListView {
                 }
             }
             Repeater {
-                model: calendarView.nbDay
+                model: calendarView.getDays()
                 Tile {
 
                     Layout.fillHeight: true
