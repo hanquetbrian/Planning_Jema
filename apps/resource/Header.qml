@@ -32,7 +32,7 @@ Rectangle {
         ComboBox {
             Layout.leftMargin: mainLayout.width * 0.05
             model: ['Jour', 'Semaine', 'Mois', 'Année']
-            currentIndex: pModel.interval
+            currentIndex: 2
             onCurrentIndexChanged: {
                 pModel.interval = currentIndex;
             }

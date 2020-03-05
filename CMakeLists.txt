@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(planning_software
 	VERSION 0.2
 	DESCRIPTION "Planning Jema"
-	LANGUAGES CXX)
+        LANGUAGES CXX)
 
 # Only execute this if it's the main project
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
@@ -17,6 +17,8 @@ add_subdirectory(src)
 
 # executable
 add_subdirectory(apps)
+
+add_subdirectory(lib/sqlite3)
 
 # Testing only available if this is the main app
 # Emergency override MODERN_CMAKE_BUILD_TESTING provided as well

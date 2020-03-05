@@ -13,6 +13,9 @@ PlanningModel::PlanningModel()
     m_firstDate = QDate::currentDate();
     m_interval = month;
 
+    sqliteEmployee test {};
+    test.connect();
+
 }
 QString PlanningModel::firstDateISOFormat() const {
     return m_firstDate.toString("yyyy-MM-dd");
@@ -57,9 +60,3 @@ CalendarModel* PlanningModel::calendarModel() {
 QString PlanningModel::getDateFormat(QString format) const {
     return firstDate(format);
 }
-
-/*
-QList<Employee> m_employees;
-interval m_interval;
-QDate m_firstDate;
-*/

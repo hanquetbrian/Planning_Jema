@@ -4,6 +4,7 @@
 #include <QDate>
 #include "employee.h"
 #include "calendarmodel.h"
+#include "sqliteemployee.h"
 
 class PlanningModel: public QObject
 {
