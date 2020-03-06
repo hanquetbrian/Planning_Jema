@@ -2,7 +2,7 @@
 
 Employee::Employee(const std::string& name, EmployeeAbstractData* data_connection)
     : m_name(name), m_data_connection(data_connection) {
-
+    m_data_connection->connect();
 }
 
 std::string Employee::getName() const {
