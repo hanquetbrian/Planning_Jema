@@ -2,27 +2,23 @@
 #define SQLITEEMPLOYEE_H
 
 #include "sqlite3.h"
+#include "employeeabstractdata.h"
 
-class sqliteEmployee
+class sqliteEmployee: public EmployeeAbstractData
 {
 public:
-    sqliteEmployee();
+    sqliteEmployee(std::string connect_info);
 
-    void connect();
-    void close();
+    bool connect() override;
+    bool close() override;
+    bool update() override;
+    bool write() override;
 
 private:
     sqlite3 *m_db;
 
     void createDefaultDataBase();
-    int callback(void *NotUsed, int argc, char **argv, char **azColName) {
-        int i;
-        for(i = 0; i<argc; i++) {
-           printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-        }
-        printf("\n");
-        return 0;
-    }
+
 };
 
 #endif // SQLITEEMPLOYEE_H

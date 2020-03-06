@@ -4,12 +4,14 @@ set(HEADER_LIST
     ../include/planning.hpp
     ../include/employee.h
     ../include/sqliteemployee.h
+    ../include/employeeabstractdata.h
 )
 
 set(SOURCE_LIST
     planning.cpp
     employee.cpp
     sqliteemployee.cpp
+    employeeabstractdata.cpp
 )
 
 add_library(planning_lib STATIC ${SOURCE_LIST} ${HEADER_LIST})

@@ -13,8 +13,9 @@ PlanningModel::PlanningModel()
     m_firstDate = QDate::currentDate();
     m_interval = month;
 
-    sqliteEmployee test {};
+    sqliteEmployee test {"planning.db"};
     test.connect();
+    test.close();
 
 }
 QString PlanningModel::firstDateISOFormat() const {
