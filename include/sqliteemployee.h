@@ -7,7 +7,7 @@
 class sqliteEmployee: public EmployeeAbstractData
 {
 public:
-    sqliteEmployee(std::string connect_info);
+    sqliteEmployee(std::string connect_info = "planning.db");
 
     bool connect() override;
     bool close() override;

@@ -1,7 +1,7 @@
 #include "employee.h"
 
-Employee::Employee(const std::string& name)
-    : m_name(name){
+Employee::Employee(const std::string& name, EmployeeAbstractData* data_connection)
+    : m_name(name), m_data_connection(data_connection) {
 
 }
 

@@ -3,19 +3,17 @@
 PlanningModel::PlanningModel()
 {
     m_calendarModel = new CalendarModel();
-    m_calendarModel->addEmployee(Employee("Leona Everett"));
-    m_calendarModel->addEmployee(Employee("Reuben Hart"));
-    m_calendarModel->addEmployee(Employee("Kristina Byrd"));
-    m_calendarModel->addEmployee(Employee("Erica Harmon"));
-    m_calendarModel->addEmployee(Employee("Martin Randolph"));
-    m_calendarModel->addEmployee(Employee("Zack John"));
+
+    sqliteEmployee* data = new sqliteEmployee();
+    m_calendarModel->addEmployee(Employee("Leona Everett", data));
+    m_calendarModel->addEmployee(Employee("Reuben Hart", data));
+    m_calendarModel->addEmployee(Employee("Kristina Byrd", data));
+    m_calendarModel->addEmployee(Employee("Erica Harmon", data));
+    m_calendarModel->addEmployee(Employee("Martin Randolph", data));
+    m_calendarModel->addEmployee(Employee("Zack John", data));
 
     m_firstDate = QDate::currentDate();
     m_interval = month;
-
-    sqliteEmployee test {"planning.db"};
-    test.connect();
-    test.close();
 
 }
 QString PlanningModel::firstDateISOFormat() const {
