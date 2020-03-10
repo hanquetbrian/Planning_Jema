@@ -7,7 +7,7 @@ project(planning_software
 
 # Only execute this if it's the main project
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-	set(CMAKE_CXX_STANDARD 11)
+        set(CMAKE_CXX_STANDARD 17)
 	set(CMAKE_CXX_STANDARD_REQUIRED ON)
 	set(CMAKE_INCLUDE_CURRENT_DIR ON)
         set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "cmake/")

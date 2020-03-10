@@ -4,7 +4,7 @@ PlanningModel::PlanningModel()
 {
     m_calendarModel = new CalendarModel();
 
-    sqliteEmployee* data = new sqliteEmployee();
+    SqlitePlanning* data = new SqlitePlanning();
     m_calendarModel->addEmployee(Employee("Leona Everett", data));
     m_calendarModel->addEmployee(Employee("Reuben Hart", data));
     m_calendarModel->addEmployee(Employee("Kristina Byrd", data));

@@ -1,11 +1,11 @@
-#ifndef EMPLOYEEABSTRACTDATA_H
-#define EMPLOYEEABSTRACTDATA_H
+#ifndef PLANNINGABSTRACTDATA_H
+#define PLANNINGABSTRACTDATA_H
 
 #include <string>
-class EmployeeAbstractData
+class PlanningAbstractData
 {
 public:
-    EmployeeAbstractData(std::string connect_info);
+    PlanningAbstractData(std::string connect_info);
     virtual bool connect() = 0;
     virtual bool close() = 0;
     virtual bool update() = 0;
@@ -15,4 +15,4 @@ protected:
     std::string m_conect_info;
 };
 
-#endif // EMPLOYEEABSTRACTDATA_H
+#endif // PLANNINGABSTRACTDATA_H

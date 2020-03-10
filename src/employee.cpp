@@ -1,6 +1,6 @@
 #include "employee.h"
 
-Employee::Employee(const std::string& name, EmployeeAbstractData* data_connection)
+Employee::Employee(const std::string& name, PlanningAbstractData* data_connection)
     : m_name(name), m_data_connection(data_connection) {
     m_data_connection->connect();
 }
