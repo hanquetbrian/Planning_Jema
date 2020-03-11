@@ -28,7 +28,6 @@ void PlanningModel::setFirstDate(QString date, QString format) {
     calendarUpdated();
 }
 
-
 int PlanningModel::interval() const {
     return m_interval;
 }
