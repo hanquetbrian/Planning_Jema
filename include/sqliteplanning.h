@@ -1,7 +1,11 @@
 #ifndef SQLITEPLANNING_H
 #define SQLITEPLANNING_H
 
+#include <list>
+#include <string>
+
 #include "sqlite3.h"
+#include "employee.h"
 #include "planningabstractdata.h"
 
 class SqlitePlanning: public PlanningAbstractData
@@ -11,15 +15,15 @@ public:
 
     bool connect() override;
     bool close() override;
-    bool update() override;
-    bool write() override;
+    std::list<Employee> getListEmployee() const override;
+    void addEmployee(Employee) override;
 
 private:
     sqlite3 *m_db;
     bool m_isConnected;
+    bool m_first_creation;
 
-    bool createDefaultDataBase();
-
+    bool _createDefaultDataBase();
 };
 
 #endif // SQLITEPLANNING_H

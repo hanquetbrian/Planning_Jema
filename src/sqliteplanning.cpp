@@ -1,18 +1,18 @@
 #include <iostream>
-#include <fstream>
-#include <cstdint>
 #include <boost/filesystem.hpp>
-
+#include <boost/function.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "sqliteplanning.h"
-#include "sqlite3.h"
 
 
 SqlitePlanning::SqlitePlanning(std::string connect_info):
-    PlanningAbstractData(connect_info), m_isConnected(false)
+    PlanningAbstractData(connect_info), m_isConnected(false), m_first_creation(false)
 {
-    std::cout << "file size: " << boost::filesystem::file_size(connect_info) << std::endl;
-    {};
+    if (!boost::filesystem::exists(connect_info)) {
+        std::cout << "creation of the database..." << std::endl;
+        m_first_creation = true;
+    }
 }
 
 bool SqlitePlanning::connect() {
@@ -22,7 +22,7 @@ bool SqlitePlanning::connect() {
         return false;
     }
 
-    createDefaultDataBase();
+    if(m_first_creation) {_createDefaultDataBase();}
     m_isConnected = true;
     return true;
 
@@ -37,20 +37,35 @@ bool SqlitePlanning::close() {
     return false;
 }
 
-bool SqlitePlanning::update() {
-    return false;
+std::list<Employee> SqlitePlanning::getListEmployee() const {
+    std::list<Employee> listEmployee {};
+    char *zErrMsg{0};
+    std::string sql = "SELECT * FROM Employee";
+
+    auto callback = [](void *data, int /*argc: nb column*/, char **argv, char **/*azColName: column name*/) -> int {
+        std::string name {argv[1]};
+        bool display = boost::lexical_cast<bool> (argv[2]);
+        int nb_absence = atoi(argv[3]);
+        Employee newEmployee(name, display, nb_absence);
+        static_cast<std::list<Employee>*>(data)->push_back(newEmployee);
+        return 0;
+    };
+
+    int rc = sqlite3_exec(m_db, sql.c_str(), callback, &listEmployee, &zErrMsg);
+
+    if( rc != SQLITE_OK ){
+        std::cerr << "Error when getting the employees" << zErrMsg << std::endl;
+        sqlite3_free(zErrMsg);
+        return std::list<Employee>{};
+    }
+    return listEmployee;
 }
 
-bool SqlitePlanning::write() {
-    return false;
+void SqlitePlanning::addEmployee(Employee) {
+
 }
 
-static int callback(void*, int, char **, char **) {
-
-    return 0;
-};
-
-bool SqlitePlanning::createDefaultDataBase() {
+bool SqlitePlanning::_createDefaultDataBase() {
     std::string sql = R"sql(
             create table IF NOT EXISTS Employee
             (
@@ -157,15 +172,15 @@ bool SqlitePlanning::createDefaultDataBase() {
                 password VARCHAR(50) not null
             );
 
-            INSERT INTO Task_state (label) VALUES ('In progress')
-            [2020-03-09 11:26:18] 1 row affected in 8 ms
-            main> INSERT INTO Task_state (label) VALUES ('Finished')
+            INSERT INTO Task_state (id, label) VALUES (1, 'Finished');
+            INSERT INTO Task_state (id, label) VALUES (2, 'In progress');
+            INSERT INTO Task_state (id, label) VALUES (3, 'Other');
 
 )sql";
 
     char *zErrMsg = 0;
 
-    int rc = sqlite3_exec(m_db, sql.c_str(), callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(m_db, sql.c_str(), [](void*, int, char **, char **){return 0;}, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
         std::cerr << "Can't create the database: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);

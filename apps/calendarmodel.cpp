@@ -18,6 +18,12 @@ void CalendarModel::addEmployee(const Employee &employee) {
     endInsertRows();
 }
 
+void CalendarModel::setEmployees(const QList<Employee>& employee) {
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    m_employees = employee;
+    endInsertRows();
+}
+
 QVariant CalendarModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())

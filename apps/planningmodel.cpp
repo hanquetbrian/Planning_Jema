@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "planningmodel.h"
 
 PlanningModel::PlanningModel()
@@ -5,12 +7,10 @@ PlanningModel::PlanningModel()
     m_calendarModel = new CalendarModel();
 
     SqlitePlanning* data = new SqlitePlanning();
-    m_calendarModel->addEmployee(Employee("Leona Everett", data));
-    m_calendarModel->addEmployee(Employee("Reuben Hart", data));
-    m_calendarModel->addEmployee(Employee("Kristina Byrd", data));
-    m_calendarModel->addEmployee(Employee("Erica Harmon", data));
-    m_calendarModel->addEmployee(Employee("Martin Randolph", data));
-    m_calendarModel->addEmployee(Employee("Zack John", data));
+    data->connect();
+    auto listEmployee = data->getListEmployee();
+
+    m_calendarModel->setEmployees(QList<Employee>(listEmployee.begin(), listEmployee.end()));
 
     m_firstDate = QDate::currentDate();
     m_interval = month;

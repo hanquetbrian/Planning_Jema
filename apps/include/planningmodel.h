@@ -2,6 +2,7 @@
 #define PLANNINGMODEL_H
 #include <QObject>
 #include <QDate>
+#include <QList>
 #include "employee.h"
 #include "calendarmodel.h"
 #include "sqliteplanning.h"

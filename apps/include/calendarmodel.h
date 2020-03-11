@@ -2,6 +2,7 @@
 #define CALENDARMODEL_H
 
 #include <QAbstractListModel>
+#include <QList>
 #include <QDate>
 #include "employee.h"
 
@@ -22,6 +23,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
     void addEmployee(const Employee &employee);
+    void setEmployees(const QList<Employee>& employee);
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
