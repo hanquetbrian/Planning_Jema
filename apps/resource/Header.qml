@@ -49,6 +49,10 @@ Rectangle {
         }
 
         PButton {
+            text: '---'
+        }
+
+        PButton {
             iconSrc: "qrc:/resource/icon/tools.svg"
         }
 
