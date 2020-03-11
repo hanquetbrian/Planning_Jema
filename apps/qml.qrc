@@ -7,10 +7,12 @@
         <file>resource/img/logo_transparent_small.png</file>
         <file>resource/CalendarView.qml</file>
         <file>resource/DatePicker.qml</file>
+        <file>resource/SettingDialog.qml</file>
         <file>resource/icon/tools.svg</file>
         <file>resource/PButton.qml</file>
         <file>resource/icon/user.svg</file>
         <file>resource/icon/question.svg</file>
-        <file>resource/SettingDialog.qml</file>
+        <file>resource/icon/sort-down.svg</file>
+        <file>resource/About.qml</file>
     </qresource>
 </RCC>

@@ -49,20 +49,30 @@ Rectangle {
         }
 
         PButton {
-            text: '---'
+            iconSrc: "qrc:/resource/icon/sort-down.svg"
+            implicitWidth: 30
+            implicitHeight: 25
         }
 
         PButton {
+            id: setting
             iconSrc: "qrc:/resource/icon/tools.svg"
         }
 
         PButton {
+            id: userConfig
             iconSrc: "qrc:/resource/icon/user.svg"
         }
 
         PButton {
+            id: aboutDialog
             iconSrc: "qrc:/resource/icon/question.svg"
+            onClicked: about.open()
         }
+
+        About {
+                id: about
+            }
 
     }
 
