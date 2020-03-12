@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(planning_software
-	VERSION 0.2
+        VERSION "0.5"
 	DESCRIPTION "Planning Jema"
         LANGUAGES CXX)
 
@@ -12,6 +12,9 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set(CMAKE_INCLUDE_CURRENT_DIR ON)
         set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "cmake/")
 endif()
+include(FindSQLite3)
+set(Boost_DEBUG 1)
+configure_file(version_config.h.in include/version_config.h @ONLY)
 
 # compiled library
 add_subdirectory(src)
