@@ -1,14 +1,12 @@
-#include <algorithm>
-
 #include "planningmodel.h"
 
-PlanningModel::PlanningModel()
+PlanningModel::PlanningModel(PlanningAbstractData* data)
+    :m_datadb(data)
 {
     m_calendarModel = new CalendarModel();
 
-    SqlitePlanning* data = new SqlitePlanning();
-    data->connect();
-    auto listEmployee = data->getListEmployee();
+    m_datadb->connect();
+    auto listEmployee = m_datadb->getListEmployee();
 
     m_calendarModel->setEmployees(QList<Employee>(listEmployee.begin(), listEmployee.end()));
 
@@ -16,6 +14,12 @@ PlanningModel::PlanningModel()
     m_interval = month;
 
 }
+
+PlanningModel::~PlanningModel() {
+    delete m_calendarModel;
+    m_calendarModel = NULL;
+}
+
 QString PlanningModel::firstDateISOFormat() const {
     return m_firstDate.toString("yyyy-MM-dd");
 }
@@ -57,4 +61,12 @@ CalendarModel* PlanningModel::calendarModel() {
 /* SLOTS */
 QString PlanningModel::getDateFormat(QString format) const {
     return firstDate(format);
+}
+
+bool PlanningModel::addEmployee(QString name, bool hide) {
+    Employee employee(name.toStdString(), hide);
+    m_datadb->addEmployee(employee);
+    m_calendarModel->addEmployee(employee);
+
+    return true;
 }

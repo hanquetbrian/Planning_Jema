@@ -16,7 +16,7 @@ public:
     bool connect() override;
     bool close() override;
     std::list<Employee> getListEmployee() const override;
-    void addEmployee(Employee) override;
+    bool addEmployee(const Employee& employee) override;
 
 private:
     sqlite3 *m_db;

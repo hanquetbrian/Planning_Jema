@@ -3,8 +3,10 @@
 #include <QObject>
 #include <QDate>
 #include <QList>
+#include <QString>
 #include "employee.h"
 #include "calendarmodel.h"
+#include "planningabstractdata.h"
 #include "sqliteplanning.h"
 
 class PlanningModel: public QObject
@@ -24,7 +26,8 @@ public:
         year
     };
 
-    PlanningModel();
+    PlanningModel(PlanningAbstractData* data = new SqlitePlanning());
+    ~PlanningModel();
 
     QString firstDateISOFormat() const;
     QString firstDate(QString format = "dd/MM/yyyy") const;
@@ -40,12 +43,14 @@ signals:
 
 public slots:
     QString getDateFormat(QString format = "dd/MM/yyyy") const;
-
+    bool addEmployee(QString name, bool hide);
 
 private:
     CalendarModel* m_calendarModel;
     Interval m_interval;
     QDate m_firstDate;
+
+    PlanningAbstractData* m_datadb;
 };
 
 #endif // PLANNINGMODEL_H

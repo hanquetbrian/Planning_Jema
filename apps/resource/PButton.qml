@@ -4,7 +4,6 @@ import QtQuick.Controls.Styles 1.4
 Button {
     id: button
     property url iconSrc
-    display: AbstractButton.IconOnly
 
     icon.source: iconSrc
     icon.color: "White"

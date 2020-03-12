@@ -42,11 +42,11 @@ std::list<Employee> SqlitePlanning::getListEmployee() const {
     char *zErrMsg{0};
     std::string sql = "SELECT * FROM Employee";
 
-    auto callback = [](void *data, int /*argc: nb column*/, char **argv, char **/*azColName: column name*/) -> int {
+    auto callback = [](void *data, int /*argc: nb column*/, char **argv, char ** /*azColName: column name*/) -> int {
         std::string name {argv[1]};
-        bool display = boost::lexical_cast<bool> (argv[2]);
+        bool hide = boost::lexical_cast<bool> (argv[2]);
         int nb_absence = atoi(argv[3]);
-        Employee newEmployee(name, display, nb_absence);
+        Employee newEmployee(name, hide, nb_absence);
         static_cast<std::list<Employee>*>(data)->push_back(newEmployee);
         return 0;
     };
@@ -54,15 +54,26 @@ std::list<Employee> SqlitePlanning::getListEmployee() const {
     int rc = sqlite3_exec(m_db, sql.c_str(), callback, &listEmployee, &zErrMsg);
 
     if( rc != SQLITE_OK ){
-        std::cerr << "Error when getting the employees" << zErrMsg << std::endl;
+        std::cerr << "Error when getting the employees: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
         return std::list<Employee>{};
     }
     return listEmployee;
 }
 
-void SqlitePlanning::addEmployee(Employee) {
+bool SqlitePlanning::addEmployee(const Employee& employee) {
+    char *zErrMsg{0};
+    std::stringstream sql;
+    sql << "INSERT INTO Employee (name, is_hide) VALUES ('" << employee.getName() << "', " << employee.is_hide() << ");";
 
+    int rc = sqlite3_exec(m_db, sql.str().c_str(), [](void*, int, char **, char **){return 0;}, 0, &zErrMsg);
+
+    if( rc != SQLITE_OK ){
+        std::cerr << "Error when inserting a new employee: " << zErrMsg << std::endl;
+        sqlite3_free(zErrMsg);
+        return false;
+    }
+    return true;
 }
 
 bool SqlitePlanning::_createDefaultDataBase() {
@@ -71,7 +82,7 @@ bool SqlitePlanning::_createDefaultDataBase() {
             (
                 id             INTEGER PRIMARY KEY AUTOINCREMENT,
                 name           VARCHAR(50) not null,
-                display        BOOLEAN default true,
+                is_hide        BOOLEAN default false,
                 nb_absence     INTEGER,
                 responsible_id INTEGER,
                 foreign key (responsible_id) references Employee

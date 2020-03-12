@@ -2,7 +2,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
-#include <qdebug.h>
 
 #include "calendarmodel.h"
 #include "planningmodel.h"
@@ -25,7 +24,5 @@ int main(int argc, char *argv[])
 
     mainWindows->setProperty("project_ver", PROJECT_VERSION);
 
-
-    qDebug() << PROJECT_VERSION;
     return app.exec();
 }

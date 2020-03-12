@@ -44,6 +44,10 @@ Rectangle {
             pModel: header.pModel
         }
 
+        PButton {
+            iconSrc: "qrc:/resource/icon/plus-circle.svg"
+        }
+
         Item {
             Layout.fillWidth: true
         }
@@ -52,6 +56,48 @@ Rectangle {
             iconSrc: "qrc:/resource/icon/sort-down.svg"
             implicitWidth: 30
             implicitHeight: 25
+            onClicked: dropDownMenu.open()
+
+            Popup  {
+                id: dropDownMenu
+                topMargin: 55
+                padding: 10
+                background: Rectangle {
+                    color: "#f2f2f2"
+                }
+
+                ColumnLayout {
+                    Button {
+                        id: addEmployee
+                        text: qsTr("Ajouter un employee")
+
+                        background: Rectangle {color: "#e3e3e3"}
+                        Layout.fillWidth: true
+
+                        onClicked: {
+                            dropDownMenu.close()
+                            addEmployeeDialog.open()
+                        }
+
+                        AddEmployee {
+                            id: addEmployeeDialog
+                            pModel: header.pModel
+
+                        }
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        background: Rectangle {color: "#e3e3e3"}
+                        text: qsTr("Ajouter des congées")
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        background: Rectangle {color: "#e3e3e3"}
+                        text: qsTr("Autre")
+                    }
+
+                }
+            }
         }
 
         PButton {
@@ -68,12 +114,10 @@ Rectangle {
             id: aboutDialog
             iconSrc: "qrc:/resource/icon/question.svg"
             onClicked: about.open()
-        }
-
-        About {
-                id: about
+            About {
+                    id: about
             }
-
+        }
     }
 
 }

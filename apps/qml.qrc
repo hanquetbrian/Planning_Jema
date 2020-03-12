@@ -13,6 +13,8 @@
         <file>resource/icon/user.svg</file>
         <file>resource/icon/question.svg</file>
         <file>resource/icon/sort-down.svg</file>
+        <file>resource/icon/plus-circle.svg</file>
         <file>resource/About.qml</file>
+        <file>resource/AddEmployee.qml</file>
     </qresource>
 </RCC>

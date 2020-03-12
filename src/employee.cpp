@@ -1,7 +1,7 @@
 #include "employee.h"
 
-Employee::Employee(const std::string& name, bool display, int nb_absence)
-    : m_name(name), m_display(display), m_nbAbsence(nb_absence), m_responsible(nullptr) {
+Employee::Employee(const std::string& name, bool hide, int nb_absence)
+    : m_name(name), m_hide(hide), m_nbAbsence(nb_absence), m_responsible(nullptr) {
 
 }
 
@@ -9,8 +9,8 @@ std::string Employee::getName() const {
     return m_name;
 }
 
-bool Employee::is_display() const {
-    return m_display;
+bool Employee::is_hide() const {
+    return m_hide;
 }
 
 int Employee::getNbAbsence() const {
@@ -26,8 +26,8 @@ void Employee::setName(std::string&& name) {
     m_name = name;
 }
 
-void Employee::setDisplay(bool display) {
-    m_display = display;
+void Employee::setHide(bool hide) {
+    m_hide = hide;
 }
 
 void Employee::setNbAbsence(int nbAbsence) {
@@ -36,6 +36,6 @@ void Employee::setNbAbsence(int nbAbsence) {
 
 
 std::ostream & operator<<(std::ostream & os, Employee const & val) {
-    os << "Name: " << val.getName() << " isDisplay: " << std::boolalpha << val.is_display() << " Nb Absence: " << val.getNbAbsence();
+    os << "Name: " << val.getName() << " isHide: " << std::boolalpha << val.is_hide() << " Nb Absence: " << val.getNbAbsence();
     return os;
 }

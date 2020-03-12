@@ -25,7 +25,14 @@ Dialog {
             }
 
             Text {
-                text: qsTr("Version " + mainWindow.project_ver + "")
+                text: qsTr("Version " + mainWindow.project_ver)
+            }
+
+
+            Text {
+                id: name
+                text: "GitHub: <a href='https://github.com/hanquetbrian/Planning_Jema'>https://github.com/hanquetbrian/Planning_Jema</a>"
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
 

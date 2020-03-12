@@ -88,7 +88,7 @@ ListView {
         id: calendarDelegate
 
         RowLayout {
-            height: 100
+            height: 80
             width: parent.width
             spacing: 0
 
