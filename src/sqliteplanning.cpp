@@ -187,6 +187,10 @@ bool SqlitePlanning::_createDefaultDataBase() {
             INSERT INTO Task_state (id, label) VALUES (2, 'In progress');
             INSERT INTO Task_state (id, label) VALUES (3, 'Other');
 
+            INSERT INTO Task_type (id, type) VALUES (1, 'SO');
+            INSERT INTO Task_type (id, type) VALUES (2, 'Test');
+            INSERT INTO Task_type (id, type) VALUES (3, 'Other');
+
 )sql";
 
     char *zErrMsg = 0;

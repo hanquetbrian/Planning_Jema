@@ -16,5 +16,6 @@
         <file>resource/icon/plus-circle.svg</file>
         <file>resource/About.qml</file>
         <file>resource/AddEmployee.qml</file>
+        <file>resource/AddTask.qml</file>
     </qresource>
 </RCC>

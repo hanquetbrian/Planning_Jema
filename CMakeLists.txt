@@ -12,7 +12,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set(CMAKE_INCLUDE_CURRENT_DIR ON)
         set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "cmake/")
 endif()
-include(FindSQLite3)
 set(Boost_DEBUG 1)
 configure_file(version_config.h.in include/version_config.h @ONLY)
 
@@ -21,8 +20,6 @@ add_subdirectory(src)
 
 # executable
 add_subdirectory(apps)
-
-add_subdirectory(lib/sqlite3)
 
 # Testing only available if this is the main app
 # Emergency override MODERN_CMAKE_BUILD_TESTING provided as well
