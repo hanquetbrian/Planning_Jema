@@ -12,7 +12,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set(CMAKE_INCLUDE_CURRENT_DIR ON)
         set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "cmake/")
 endif()
-set(Boost_DEBUG 1)
 configure_file(version_config.h.in include/version_config.h @ONLY)
 
 # compiled library
