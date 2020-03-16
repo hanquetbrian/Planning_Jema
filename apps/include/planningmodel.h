@@ -26,6 +26,12 @@ public:
         year
     };
 
+    enum TaskState {
+        Finished = 0,
+        InProgress,
+        Waiting
+    };
+
     PlanningModel(PlanningAbstractData* data = new SqlitePlanning());
     ~PlanningModel();
 
@@ -44,6 +50,8 @@ signals:
 public slots:
     QString getDateFormat(QString format = "dd/MM/yyyy") const;
     bool addEmployee(QString name, bool hide);
+    bool addTaskSO(QString title, int so_id, int wo_id, QDate date_from, QDate date_to, QTime hour_from, QTime hour_to, QString comment, TaskState state);
+    bool addTaskTest(QString name, int wo_id, QDate testDate, QString comment, TaskState state);
 
 private:
     CalendarModel* m_calendarModel;

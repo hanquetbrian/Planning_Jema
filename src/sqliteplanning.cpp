@@ -64,17 +64,74 @@ std::list<Employee> SqlitePlanning::getListEmployee() const {
 bool SqlitePlanning::addEmployee(const Employee& employee) {
     char *zErrMsg{0};
     std::stringstream sql;
-    sql << "INSERT INTO Employee (name, is_hide) VALUES ('" << employee.getName() << "', " << employee.is_hide() << ");";
+    sql << "INSERT INTO Employee (name, is_hide) VALUES (?, ?);";
+    sqlite3_stmt* stmt = nullptr;
 
-    int rc = sqlite3_exec(m_db, sql.str().c_str(), [](void*, int, char **, char **){return 0;}, 0, &zErrMsg);
+    int rc = sqlite3_prepare_v2(m_db, sql.str().c_str(), -1, &stmt, 0);
+    rc = sqlite3_bind_text(stmt, 1, employee.getName().c_str(), -1, 0);
+    rc = sqlite3_bind_int(stmt, 2, employee.is_hide());
+    rc = sqlite3_step(stmt);
 
-    if( rc != SQLITE_OK ){
+    if( rc != SQLITE_DONE ){
         std::cerr << "Error when inserting a new employee: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
         return false;
     }
+    sqlite3_finalize(stmt);
     return true;
 }
+
+bool SqlitePlanning::addTaskSO(std::string title, int so_id, int wo_id, std::string date_from, std::string date_to, std::string hour_from, std::string hour_to, std::string comment, int state) {
+    char *zErrMsg{0};
+    std::stringstream sql;
+    sql << "INSERT INTO Task_so (label, wo_id, so_id, date_from, date_to, hour_from, hour_to, comment, state_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt = nullptr;
+
+    int rc = sqlite3_prepare_v2(m_db, sql.str().c_str(), -1, &stmt, 0);
+    rc = sqlite3_bind_text(stmt, 1, title.c_str(), -1, 0);
+    rc = sqlite3_bind_int(stmt, 2, wo_id);
+    rc = sqlite3_bind_int(stmt, 3, so_id);
+    rc = sqlite3_bind_text(stmt, 4, date_from.c_str(), -1, 0);
+    rc = sqlite3_bind_text(stmt, 5, date_to.c_str(), -1, 0);
+    rc = sqlite3_bind_text(stmt, 6, hour_from.c_str(), -1, 0);
+    rc = sqlite3_bind_text(stmt, 7, hour_to.c_str(), -1, 0);
+    rc = sqlite3_bind_text(stmt, 8, comment.c_str(), -1, 0);
+    rc = sqlite3_bind_int(stmt, 9, state);
+    rc = sqlite3_step(stmt);
+
+    if( rc != SQLITE_DONE ){
+        std::cerr << "Error when inserting a new employee: " << zErrMsg << std::endl;
+        sqlite3_free(zErrMsg);
+        return false;
+    }
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool SqlitePlanning::addTaskTest(std::string name, int wo_id, std::string testDate, std::string comment, int state) {
+    char *zErrMsg{0};
+    std::stringstream sql;
+    sql << "INSERT INTO Task_test (name, test_date, wo_id, comment, state_id) VALUES (?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt = nullptr;
+
+    int rc = sqlite3_prepare_v2(m_db, sql.str().c_str(), -1, &stmt, 0);
+    rc = sqlite3_bind_text(stmt, 1, name.c_str(), -1, 0);
+    rc = sqlite3_bind_text(stmt, 2, testDate.c_str(), -1, 0);
+    rc = sqlite3_bind_int(stmt, 3, wo_id);
+    rc = sqlite3_bind_text(stmt, 4, comment.c_str(), -1, 0);
+    rc = sqlite3_bind_int(stmt, 5, state);
+
+    rc = sqlite3_step(stmt);
+
+    if( rc != SQLITE_DONE ){
+        std::cerr << "Error when inserting a new employee: " << zErrMsg << std::endl;
+        sqlite3_free(zErrMsg);
+        return false;
+    }
+    sqlite3_finalize(stmt);
+    return true;
+}
+
 
 bool SqlitePlanning::_createDefaultDataBase() {
     std::string sql = R"sql(
@@ -140,27 +197,18 @@ bool SqlitePlanning::_createDefaultDataBase() {
                 label VARCHAR(30) not null
             );
 
-            create table IF NOT EXISTS Task_type
-            (
-                id   INTEGER PRIMARY KEY AUTOINCREMENT,
-                type VARCHAR(30) not null
-            );
-
             create table IF NOT EXISTS Task_so
             (
                 id        INTEGER PRIMARY KEY AUTOINCREMENT,
                 label     VARCHAR(50),
-                type_id   INTEGER         not null,
+                so_id     INTEGER     not null,
                 wo_id     INTEGER,
-                so_id     INTEGER,
                 date_from DATE        not null,
                 date_to   DATE        not null,
                 hour_from TEXT,
                 hour_to   TEXT,
                 comment   TEXT,
                 state_id  INTEGER,
-                foreign key (type_id) references Task_type
-                    on update restrict on delete restrict,
                 foreign key (state_id) references Task_state
                     on update restrict on delete restrict
             );
@@ -198,10 +246,6 @@ bool SqlitePlanning::_createDefaultDataBase() {
             INSERT INTO Task_state (id, label) VALUES (1, 'Finished');
             INSERT INTO Task_state (id, label) VALUES (2, 'In progress');
             INSERT INTO Task_state (id, label) VALUES (3, 'Waiting');
-
-            INSERT INTO Task_type (id, type) VALUES (1, 'SO');
-            INSERT INTO Task_type (id, type) VALUES (2, 'Test');
-            INSERT INTO Task_type (id, type) VALUES (3, 'Other');
 
 )sql";
 

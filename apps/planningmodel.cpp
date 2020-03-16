@@ -65,8 +65,17 @@ QString PlanningModel::getDateFormat(QString format) const {
 
 bool PlanningModel::addEmployee(QString name, bool hide) {
     Employee employee(name.toStdString(), hide);
-    m_datadb->addEmployee(employee);
+    bool dbReq = m_datadb->addEmployee(employee);
+    if(!dbReq) return false;
     m_calendarModel->addEmployee(employee);
 
+    return true;
+}
+
+bool PlanningModel::addTaskSO(QString title, int so_id, int wo_id, QDate date_from, QDate date_to, QTime hour_from, QTime hour_to, QString comment, TaskState state) {
+
+    return true;
+}
+bool PlanningModel::addTaskTest(QString name, int wo_id, QDate testDate, QString comment, TaskState state) {
     return true;
 }

@@ -17,6 +17,8 @@ public:
     bool close() override;
     std::list<Employee> getListEmployee() const override;
     bool addEmployee(const Employee& employee) override;
+    bool addTaskSO(std::string title, int so_id, int wo_id, std::string date_from, std::string date_to, std::string hour_from, std::string hour_to, std::string comment, int state) override;
+    bool addTaskTest(std::string name, int wo_id, std::string testDate, std::string comment, int state) override;
 
 private:
     sqlite3 *m_db;

@@ -229,7 +229,10 @@ Window {
 
         Button {
             text: "Ok"
-            onClicked: addTaskDialog.close()
+            onClicked: {
+
+                addTaskDialog.close()
+            }
         }
     }
 }

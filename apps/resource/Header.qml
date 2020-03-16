@@ -52,6 +52,7 @@ Rectangle {
 
             AddTask{
                 id: addTask
+                pModel: header.pModel
             }
         }
 

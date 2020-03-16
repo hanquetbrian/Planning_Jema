@@ -16,6 +16,8 @@ public:
     virtual bool close() = 0;
     virtual std::list<Employee> getListEmployee() const = 0;
     virtual bool addEmployee(const Employee&) = 0;
+    virtual bool addTaskSO(std::string title, int so_id, int wo_id, std::string date_from, std::string date_to, std::string hour_from, std::string hour_to, std::string comment, int state) = 0;
+    virtual bool addTaskTest(std::string name, int wo_id, std::string testDate, std::string comment, int state) = 0;
 
     // public function
 
