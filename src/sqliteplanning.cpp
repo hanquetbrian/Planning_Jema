@@ -146,7 +146,7 @@ bool SqlitePlanning::_createDefaultDataBase() {
                 type VARCHAR(30) not null
             );
 
-            create table IF NOT EXISTS Task
+            create table IF NOT EXISTS Task_so
             (
                 id        INTEGER PRIMARY KEY AUTOINCREMENT,
                 label     VARCHAR(50),
@@ -165,14 +165,26 @@ bool SqlitePlanning::_createDefaultDataBase() {
                     on update restrict on delete restrict
             );
 
-            create table IF NOT EXISTS Employee_Task
+            create table Task_test
+            (
+                id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                name      VARCHAR(50) not null,
+                test_date DATE        not null,
+                wo_id     INTEGER,
+                Comment   VARCHAR(255),
+                state_id  INTEGER default 2 not null
+                    references Task_state
+                        on update restrict on delete restrict
+            );
+
+            create table IF NOT EXISTS Employee_Task_so
             (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
                 employee_id INTEGER not null,
-                task_id     INTEGER not null,
+                task_so_id     INTEGER not null,
                 foreign key (employee_id) references Employee
                     on update restrict on delete restrict,
-                foreign key (task_id) references Task
+                foreign key (task_so_id) references Task_so
                     on update restrict on delete restrict
             );
 
@@ -185,7 +197,7 @@ bool SqlitePlanning::_createDefaultDataBase() {
 
             INSERT INTO Task_state (id, label) VALUES (1, 'Finished');
             INSERT INTO Task_state (id, label) VALUES (2, 'In progress');
-            INSERT INTO Task_state (id, label) VALUES (3, 'Other');
+            INSERT INTO Task_state (id, label) VALUES (3, 'Waiting');
 
             INSERT INTO Task_type (id, type) VALUES (1, 'SO');
             INSERT INTO Task_type (id, type) VALUES (2, 'Test');

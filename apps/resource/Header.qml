@@ -46,7 +46,9 @@ Rectangle {
 
         PButton {
             iconSrc: "qrc:/resource/icon/plus-circle.svg"
-            onClicked: addTask.open()
+            onClicked: {
+                addTask.show()
+            }
 
             AddTask{
                 id: addTask
