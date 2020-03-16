@@ -230,7 +230,7 @@ Window {
         Button {
             text: "Ok"
             onClicked: {
-
+                pModel.addTaskTest("test", 10, "2020-03-16", "test", 1)
                 addTaskDialog.close()
             }
         }

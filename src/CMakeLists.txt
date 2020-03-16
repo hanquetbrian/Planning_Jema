@@ -5,6 +5,7 @@ set(HEADER_LIST
     ../include/employee.h
     ../include/sqliteplanning.h
     ../include/planningabstractdata.h
+    ../include/wo.h
 )
 
 set(SOURCE_LIST
@@ -12,6 +13,7 @@ set(SOURCE_LIST
     employee.cpp
     sqliteplanning.cpp
     planningabstractdata.cpp
+    wo.cpp
 )
 set(Boost_ARCHITECTURE -x64)
 set(BOOST_ROOT C:/Boost)

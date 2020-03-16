@@ -129,6 +129,7 @@ bool SqlitePlanning::addTaskTest(std::string name, int wo_id, std::string testDa
         return false;
     }
     sqlite3_finalize(stmt);
+
     return true;
 }
 

@@ -72,10 +72,13 @@ bool PlanningModel::addEmployee(QString name, bool hide) {
     return true;
 }
 
-bool PlanningModel::addTaskSO(QString title, int so_id, int wo_id, QDate date_from, QDate date_to, QTime hour_from, QTime hour_to, QString comment, TaskState state) {
-
+bool PlanningModel::addTaskSO(QString title, int so_id, int wo_id, QDate date_from, QDate date_to, QTime hour_from, QTime hour_to, QString comment, int state) {
+    bool dbReq = m_datadb->addTaskSO(title.toStdString(), so_id, wo_id, date_from.toString("yyyy-MM-dd").toStdString(), date_to.toString("yyyy-MM-dd").toStdString(), hour_from.toString("HH:mm:ss").toStdString(), hour_to.toString("HH:mm:ss").toStdString(), comment.toStdString(), state);
+    if(!dbReq) return false;
     return true;
 }
-bool PlanningModel::addTaskTest(QString name, int wo_id, QDate testDate, QString comment, TaskState state) {
+bool PlanningModel::addTaskTest(QString name, int wo_id, QDate testDate, QString comment, int state) {
+    bool dbReq = m_datadb->addTaskTest(name.toStdString(), wo_id, testDate.toString("yyyy-MM-dd").toStdString(), comment.toStdString(), state);
+    if(!dbReq) return false;
     return true;
 }
