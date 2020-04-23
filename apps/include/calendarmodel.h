@@ -6,6 +6,10 @@
 #include <QDate>
 #include "employee.h"
 
+/**
+ * @brief The CalendarModel is the model that display all the informations on the calendar.
+ */
+
 class CalendarModel : public QAbstractListModel
 {
     Q_OBJECT

@@ -1,19 +1,19 @@
 
 # Header
 set(HEADER_LIST
-    ../include/planning.hpp
     ../include/employee.h
     ../include/sqliteplanning.h
     ../include/planningabstractdata.h
     ../include/wo.h
+    ../mssqlhandler.h
 )
 
 set(SOURCE_LIST
-    planning.cpp
     employee.cpp
     sqliteplanning.cpp
     planningabstractdata.cpp
     wo.cpp
+    mssqlhandler.cpp
 )
 set(Boost_ARCHITECTURE -x64)
 set(BOOST_ROOT C:/Boost)
