@@ -1,8 +1,30 @@
 #include "planningmodel.h"
+//#include <QSqlDatabase>
+//#include <QSqlQuery>
+//#include <QtDebug>
 
 PlanningModel::PlanningModel(PlanningAbstractData* data)
     :m_datadb(data)
 {
+//    QString servername = "jemaapp01.jemadom.local";
+//    QString dbname = "synchro_jema";
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+//    db.setConnectOptions();
+//    QString dsn = QString("Driver={SQL Server};Server=jemaapp01.jemadom.local;Database=synchro_jema;UID=JemaQuery01;PWD=Jq@01&;");
+//    db.setDatabaseName(dsn);
+//    qDebug() << db.connectionName();
+
+//    QSqlQuery query{db};
+//    query.exec("SELECT TOP 10 t.* FROM Synchro_Jema.dbo.D0601200 t");
+
+//    while (query.next()) {
+//         QString name = query.value(0).toString();
+//         int salary = query.value(1).toInt();
+//         qDebug() << name << salary;
+//    }
+
+
+
     m_calendarModel = new CalendarModel();
 
     m_datadb->connect();

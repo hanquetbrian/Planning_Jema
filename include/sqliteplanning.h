@@ -7,6 +7,7 @@
 #include "sqlite3.h"
 #include "employee.h"
 #include "planningabstractdata.h"
+#include "mssqlhandler.h"
 
 class SqlitePlanning: public PlanningAbstractData
 {
@@ -22,6 +23,7 @@ public:
 
 private:
     sqlite3 *m_db;
+    MssqlHandler mssqlHandler;
     bool m_isConnected;
     bool m_first_creation;
 

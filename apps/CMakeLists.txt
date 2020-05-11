@@ -2,7 +2,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 COMPONENTS Core Quick QuickControls2 LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick QuickControls2 LinguistTools Sql REQUIRED)
 
 set(TS_FILES
     ../translate/planning_software_fr_FR.ts
@@ -21,7 +21,7 @@ set(HEADERS
 )
 
 
-add_executable(app
+add_executable(app WIN32
         ${SOURCES}
         ${HEADERS}
         ${TS_FILES}
@@ -32,7 +32,7 @@ target_compile_definitions(app
 
 # Qt Library
 target_link_libraries(app
-  PRIVATE Qt5::Core Qt5::Quick Qt5::QuickControls2)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::QuickControls2 Qt5::Sql)
 
 target_include_directories(app PRIVATE resource/)
 target_include_directories(app PRIVATE include/)

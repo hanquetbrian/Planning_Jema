@@ -2,10 +2,9 @@
 #define MSSQLHANDLER_H
 
 
-class mssqlHandler
-{
+class MssqlHandler {
 public:
-    mssqlHandler();
+    MssqlHandler();
 };
 
 #endif // MSSQLHANDLER_H
